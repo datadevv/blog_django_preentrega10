@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="{% static 'posts/css/estilos.css' %}">
 </head>
 <body>
-    <header class="site-header">
-        <nav class="nav-bar">
-            <a href="{% url 'inicio' %}">Inicio</a>
+    <header>
+        <nav>
+            <a href="{% url 'lista_posts' %}">Inicio</a>
+            <a href="{% url 'crear_post' %}">Crear post</a>
             <a href="{% url 'acerca' %}">Acerca de</a>
         </nav>
     </header>
 
-    <main class="container">
-        {% block content %}
-        {% endblock %}
+    <main>
+        {% block content %}{% endblock %}
     </main>
 </body>
 </html>

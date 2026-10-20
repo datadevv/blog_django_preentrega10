@@ -1,0 +1,28 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+    <h1>Listado de posts</h1>
+
+    {% for post in posts %}
+        <article>
+            <h2><a href="{% url 'detalle_post' post.pk %}">{{ post.titulo }}</a></h2>
+
+            {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" width="300">
+            {% endif %}
+
+            <p><strong>Autor:</strong> {{ post.autor }}</p>
+            <p><strong>Estado:</strong> {{ post.get_estado_display }}</p>
+            <p><strong>Fecha:</strong> {{ post.fecha_creacion|date:"d/m/Y" }}</p>
+            <p>{{ post.contenido|truncatewords:30 }}</p>
+
+            <a href="{% url 'detalle_post' post.pk %}">Ver detalle</a>
+            <a href="{% url 'editar_post' post.pk %}">Editar</a>
+            <a href="{% url 'eliminar_post' post.pk %}">Eliminar</a>
+        </article>
+    {% empty %}
+        <p>No hay posts publicados todavía.</p>
+    {% endfor %}
+{% endblock %}
